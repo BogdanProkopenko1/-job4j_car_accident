@@ -12,6 +12,8 @@
     <title>Accident</title>
 </head>
 <body>
-Hello : Accident
+<c:forEach items="${list}" var="el">
+    <c:out value="${el}"/>
+</c:forEach>
 </body>
 </html>
