@@ -16,7 +16,8 @@
     table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
     table.iksweb th{font-weight:normal;font-size:18px; color:#ffffff;background-color:#354251;}
     table.iksweb td{font-size:14px;color:#354251;}
-    table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:20px 20px;line-height:14px;vertical-align: middle;border: 2px solid #354251;}	table.iksweb tr:hover{background-color:#f9fafb}
+    table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:20px 20px;line-height:14px;vertical-align: middle;border: 2px solid #354251;}
+    table.iksweb tr:hover{background-color:#f9fafb}
     table.iksweb tr:hover td{color:#354251;cursor:default;}
 </style>
 <table class="iksweb">
