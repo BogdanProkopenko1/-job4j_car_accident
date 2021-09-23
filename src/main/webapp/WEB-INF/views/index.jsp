@@ -12,6 +12,7 @@
     <title>Accident</title>
 </head>
 <body>
+<a href="<c:url value='/create'/>">Добавить инцидент</a>
 <style>
     table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
     table.iksweb th{font-weight:normal;font-size:18px; color:#ffffff;background-color:#354251;}
@@ -33,8 +34,11 @@
     <c:forEach items="${accidents}" var="accident">
         <tr>
             <td><c:out value="${accident.name}"/></td>
-            <td><c:out value="${accident.text}"/></td>
+            <td><c:out value="${accident.description}"/></td>
             <td><c:out value="${accident.address}"/></td>
+            <td>
+                <a href="<c:url value='/update'/>">Download</a>
+            </td>>
         </tr>
     </c:forEach>
 

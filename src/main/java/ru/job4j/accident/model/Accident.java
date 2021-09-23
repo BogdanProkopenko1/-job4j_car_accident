@@ -6,13 +6,12 @@ public class Accident {
 
     private int id;
     private String name;
-    private String text;
+    private String description;
     private String address;
 
-    public Accident(int id, String name, String text, String address) {
-        this.id = id;
+    public Accident(String name, String description, String address) {
         this.name = name;
-        this.text = text;
+        this.description = description;
         this.address = address;
     }
 
@@ -32,12 +31,12 @@ public class Accident {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddress() {
@@ -53,12 +52,12 @@ public class Accident {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Accident accident = (Accident) o;
-        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(text, accident.text) && Objects.equals(address, accident.address);
+        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(description, accident.description) && Objects.equals(address, accident.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, text, address);
+        return Objects.hash(id, name, description, address);
     }
 
     @Override
@@ -66,7 +65,7 @@ public class Accident {
         return "Accident{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
+                ", text='" + description + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }

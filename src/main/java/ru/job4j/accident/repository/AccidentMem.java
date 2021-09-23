@@ -4,29 +4,36 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
 
-    private List<Accident> accidents = new LinkedList<>();
+    private List<Accident> accidents = new ArrayList<>();
+    private AtomicInteger integer = new AtomicInteger();
 
     public AccidentMem() {
-        accidents = List.of(
-                new Accident(0, "Zero Name", "Zero Desc", "Zero address"),
-                new Accident(1, "First Name", "First Desc", "First address"),
-                new Accident(2, "Second Name", "Second Desc", "Second address"),
-                new Accident(3, "Third Name", "Third Desc", "Third address"),
-                new Accident(4, "Fourth Name", "Fourth Desc", "Fourth address")
-        );
+        accidents.addAll(List.of(
+                new Accident( "Zero Name", "Zero Desc", "Zero address"),
+                new Accident("First Name", "First Desc", "First address"),
+                new Accident("Second Name", "Second Desc", "Second address"),
+                new Accident("Third Name", "Third Desc", "Third address"),
+                new Accident("Fourth Name", "Fourth Desc", "Fourth address")
+
+        ));
     }
 
-    public boolean add(Accident accident) {
+    public boolean save(Accident accident) {
+        accident.setId(integer.getAndIncrement());
         return accidents.add(accident);
     }
 
+    public boolean update(Accident accident) {
+        return accidents.set(accident.getId(), accident) != null;
+    }
+
     public List<Accident> getAccidents() {
-        return new ArrayList<>(accidents);
+        return accidents;
     }
 }
