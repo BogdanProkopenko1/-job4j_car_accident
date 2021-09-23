@@ -9,7 +9,8 @@ public class Accident {
     private String description;
     private String address;
 
-    public Accident(String name, String description, String address) {
+    public Accident(int id, String name, String description, String address) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.address = address;

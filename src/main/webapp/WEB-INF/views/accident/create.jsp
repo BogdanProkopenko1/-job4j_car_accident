@@ -32,7 +32,7 @@
                 New Accident
             </div>
             <div class="card-body">
-                <form action="<c:url value="/save"/>" method="post">
+                <form action="<c:url value="/save?id=0"/>" method="post">
                 <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="name">
