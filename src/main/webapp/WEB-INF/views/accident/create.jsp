@@ -1,11 +1,12 @@
-<%@ page import="ru.job4j.accident.model.AccidentType" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: pvzar
   Date: 22.09.2021
   Time: 23:50
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="ru.job4j.accident.model.AccidentType" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <html>

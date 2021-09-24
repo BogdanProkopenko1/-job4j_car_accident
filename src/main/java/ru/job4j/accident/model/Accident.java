@@ -1,7 +1,6 @@
 package ru.job4j.accident.model;
 
 import java.util.Objects;
-import java.util.Set;
 
 public class Accident {
 
@@ -10,7 +9,6 @@ public class Accident {
     private String description;
     private String address;
     private AccidentType type;
-    private Set<Rule> rules;
 
     public Accident(int id, String name, String description, String address) {
         this.id = id;

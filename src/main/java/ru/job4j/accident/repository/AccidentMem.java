@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,10 +12,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class AccidentMem {
 
-    private volatile Map<Integer, Accident> accidents = new HashMap<>();
-    private volatile Map<Integer, AccidentType> types = new HashMap<>();
+    private Map<Integer, Accident> accidents = new HashMap<>();
+    private Map<Integer, AccidentType> types = new HashMap<>();
     private AtomicInteger accidentIds = new AtomicInteger(1);
-    private AtomicInteger typeIds = new AtomicInteger(1);
 
     public AccidentMem() {
         Accident a1 = new Accident(
@@ -50,36 +50,28 @@ public class AccidentMem {
         a5.setType(t2);
     }
 
-    public Accident save(Accident accident) {
-        if (accident.getId() == 0) {
-            return this.add(accident);
-        } else {
-            return this.update(accident);
-        }
-    }
-
-    private Accident add(Accident accident) {
+    public Accident add(Accident accident) {
         accident.setId(accidentIds.getAndIncrement());
         return accidents.put(accident.getId(), accident);
     }
 
-    private Accident update(Accident accident) {
+    public Accident update(Accident accident) {
         return accidents.replace(accident.getId(), accident);
     }
 
-    public Accident findById(int id) {
+    public Accident findAccidentById(int id) {
         return accidents.get(id);
     }
 
-    public Map<Integer, Accident> getAccidents() {
-        return accidents;
+    public Collection<Accident> getAccidents() {
+        return accidents.values();
     }
 
-    public AccidentType findType(int id) {
+    public AccidentType findTypeById(int id) {
         return types.get(id);
     }
 
-    public Map<Integer, AccidentType> getTypes() {
-        return types;
+    public Collection<AccidentType> getTypes() {
+        return types.values();
     }
 }
