@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ru.job4j.accident.model.AccidentType" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: pvzar
   Date: 22.09.2021
@@ -6,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -35,12 +36,19 @@
                 <form action="<c:url value="/save?id=0"/>" method="post">
                 <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name">
+                        <input required type="text" class="form-control" name="name">
                         <label>Description</label>
-                        <input type="text" class="form-control" name="description">
+                        <input required type="text" class="form-control" name="description">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="address">
-                    </div>
+                        <input required type="text" class="form-control" name="address">
+                        <br>
+                        <label>Type</label>
+                        <select required name="type.id">
+                            <% for (AccidentType ac : (List<AccidentType>) request.getAttribute("types")) { %>
+                                <option value="<%=ac.getId()%>"><%=ac.getName()%></option>
+                            <% } %>
+                        </select>
+                </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>

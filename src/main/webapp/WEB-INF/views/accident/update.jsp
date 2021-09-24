@@ -1,4 +1,6 @@
-<%@ page import="ru.job4j.accident.model.Accident" %><%--
+<%@ page import="ru.job4j.accident.model.Accident" %>
+<%@ page import="ru.job4j.accident.model.AccidentType" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: pvzar
   Date: 23.09.2021
@@ -24,6 +26,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>Accident</title>
 </head>
+<%
+    Accident accident = (Accident) request.getAttribute("accident");
+    AccidentType type = (AccidentType) request.getAttribute("type");
+%>
 <body>
 <div class="container pt-3">
     <div class="row">
@@ -35,11 +41,20 @@
                 <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" value="<%= accident.getName() %>" name="name">
                         <label>Description</label>
-                        <input type="text" class="form-control" name="description">
+                        <input type="text" class="form-control" value="<%= accident.getDescription() %>" name="description">
                         <label>Address</label>
-                        <input type="text" class="form-control" name="address">
+                        <input type="text" class="form-control" value="<%= accident.getAddress() %>" name="address">
+                        <br>
+                        <label>Type</label>
+                        <br>
+                        <select required name="type.id">
+                            <option value="<%=type.getId()%>"><%=type.getName()%></option>
+                            <% for (AccidentType ac : (List<AccidentType>) request.getAttribute("types")) { %>
+                            <option value="<%=ac.getId()%>"><%=ac.getName()%></option>
+                            <% } %>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>

@@ -1,6 +1,7 @@
 package ru.job4j.accident.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
 
@@ -8,6 +9,8 @@ public class Accident {
     private String name;
     private String description;
     private String address;
+    private AccidentType type;
+    private Set<Rule> rules;
 
     public Accident(int id, String name, String description, String address) {
         this.id = id;
@@ -48,17 +51,33 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Accident accident = (Accident) o;
-        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(description, accident.description) && Objects.equals(address, accident.address);
+        return id == accident.id
+                && Objects.equals(name, accident.name)
+                && Objects.equals(description, accident.description)
+                && Objects.equals(address, accident.address)
+                && Objects.equals(type, accident.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, address);
+        return Objects.hash(id, name, description, address, type);
     }
 
     @Override
@@ -66,8 +85,9 @@ public class Accident {
         return "Accident{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", text='" + description + '\'' +
+                ", description='" + description + '\'' +
                 ", address='" + address + '\'' +
+                ", type=" + type +
                 '}';
     }
 }
