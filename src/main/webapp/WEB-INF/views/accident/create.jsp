@@ -7,6 +7,8 @@
 --%>
 <%@ page import="ru.job4j.accident.model.AccidentType" %>
 <%@ page import="java.util.List" %>
+<%@ page import="ru.job4j.accident.model.Rule" %>
+<%@ page import="java.util.Collection" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <html>
@@ -36,19 +38,25 @@
             <div class="card-body">
                 <form action="<c:url value="/save?id=0"/>" method="post">
                 <div class="form-group">
-                        <label>Name</label>
-                        <input required type="text" class="form-control" name="name">
-                        <label>Description</label>
-                        <input required type="text" class="form-control" name="description">
-                        <label>Address</label>
-                        <input required type="text" class="form-control" name="address">
-                        <br>
-                        <label>Type</label>
-                        <select required name="type.id">
-                            <% for (AccidentType ac : (List<AccidentType>) request.getAttribute("types")) { %>
-                                <option value="<%=ac.getId()%>"><%=ac.getName()%></option>
-                            <% } %>
-                        </select>
+                    <label>Name</label>
+                    <input required type="text" class="form-control" name="name">
+                    <label>Description</label>
+                    <input required type="text" class="form-control" name="description">
+                    <label>Address</label>
+                    <input required type="text" class="form-control" name="address">
+                    <br>
+                    <label>Type</label>
+                    <select required name="type.id">
+                        <% for (AccidentType ac : (Collection<AccidentType>) request.getAttribute("types")) { %>
+                        <option value="<%=ac.getId()%>"><%=ac.getName()%></option>
+                        <% } %>
+                    </select>
+                    <label>Article</label>
+                    <select required name="rIds" multiple>
+                        <% for (Rule r : (Collection<Rule>) request.getAttribute("rules")) { %>
+                        <option value="<%=r.getId()%>"><%=r.getName()%></option>
+                        <% } %>
+                    </select>
                 </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>

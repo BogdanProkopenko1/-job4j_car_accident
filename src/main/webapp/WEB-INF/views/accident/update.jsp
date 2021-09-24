@@ -1,6 +1,8 @@
 <%@ page import="ru.job4j.accident.model.Accident" %>
 <%@ page import="ru.job4j.accident.model.AccidentType" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="ru.job4j.accident.model.Rule" %>
+<%@ page import="java.util.Collection" %><%--
   Created by IntelliJ IDEA.
   User: pvzar
   Date: 23.09.2021
@@ -29,6 +31,7 @@
 <%
     Accident accident = (Accident) request.getAttribute("accident");
     AccidentType type = (AccidentType) request.getAttribute("type");
+    Rule rule = (Rule) request.getAttribute("rule");
 %>
 <body>
 <div class="container pt-3">
@@ -50,9 +53,17 @@
                         <label>Type</label>
                         <br>
                         <select required name="type.id">
-                            <option value="<%=type.getId()%>"><%=type.getName()%></option>
-                            <% for (AccidentType ac : (List<AccidentType>) request.getAttribute("types")) { %>
+                            <option selected value="<%=type.getId()%>"><%=type.getName()%></option>
+                            <% for (AccidentType ac : (Collection<AccidentType>) request.getAttribute("types")) { %>
                             <option value="<%=ac.getId()%>"><%=ac.getName()%></option>
+                            <% } %>
+                        </select>
+                        <select required name="rIds" multiple>
+                            <<% for (Rule r : (Collection<Rule>) request.getAttribute("rulesSelected")) { %>
+                            <option selected value="<%=r.getId()%>"><%=r.getName()%></option>
+                            <% } %>
+                            <<% for (Rule r : (Collection<Rule>) request.getAttribute("rules")) { %>
+                            <option value="<%=r.getId()%>"><%=r.getName()%></option>
                             <% } %>
                         </select>
                     </div>

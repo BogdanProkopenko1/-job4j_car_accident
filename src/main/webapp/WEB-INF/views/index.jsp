@@ -26,6 +26,7 @@
     <tr>
         <th>Name</th>
         <th>Type</th>
+        <th>Articles</th>
         <th>Description</th>
         <th>Address</th>
     </tr>
@@ -36,11 +37,16 @@
         <tr>
             <td><c:out value="${ac.name}"/></td>
             <td><c:out value="${ac.type.name}"/></td>
+            <td>
+        <c:forEach items="${ac.rules}" var="r">
+            <c:out value="${r.name}"/>
+        </c:forEach>
+            </td>
             <td><c:out value="${ac.description}"/></td>
             <td><c:out value="${ac.address}"/></td>
             <td><c:out value="${ac.id}"/></td>
             <td>
-                <a href="<c:url value='/update?id=${ac.id}&type=${ac.type.id}'/>">Edit</a>
+                <a href="<c:url value='/update?id=${ac.id}'/>">Edit</a>
             </td>>
         </tr>
     </c:forEach>
