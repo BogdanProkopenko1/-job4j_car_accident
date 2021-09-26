@@ -4,16 +4,16 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 
 import java.util.Collection;
 
 @Service
 public class AccidentService {
 
-    private final AccidentMem storage;
+    private final AccidentJdbcTemplate storage;
 
-    public AccidentService(AccidentMem accidentMem) {
+    public AccidentService(AccidentJdbcTemplate accidentMem) {
         this.storage = accidentMem;
     }
 
@@ -33,11 +33,14 @@ public class AccidentService {
         return storage.findAccidentById(id);
     }
 
-    public Accident save(Accident accident) {
+    public void save(Accident accident, String[] ids) {
+        for (String rId : ids) {
+            accident.addRule(findRuleById(Integer.parseInt(rId)));
+        }
         if (accident.getId() == 0) {
-            return storage.add(accident);
+            storage.add(accident);
         } else {
-            return storage.update(accident);
+            storage.update(accident);
         }
     }
 

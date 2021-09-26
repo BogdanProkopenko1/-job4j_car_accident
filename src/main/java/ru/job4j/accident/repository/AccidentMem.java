@@ -96,16 +96,4 @@ public class AccidentMem {
     public Collection<Rule> getRules() {
         return rules.values();
     }
-
-    public static void main(String[] args) {
-        Set<Rule> set = new HashSet<>();
-        Rule r1 = Rule.of(1, "Статья. 1");
-        Rule r2 = Rule.of(2, "Статья. 2");
-        Rule r3 = Rule.of(3, "Статья. 3");
-        set.add(r1);
-        set.add(r2);
-        set.add(r3);
-        //List<Rule> rules = ArrayList;
-        //System.out.println(rules);
-    }
 }

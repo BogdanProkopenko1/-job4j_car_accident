@@ -2,7 +2,6 @@ package ru.job4j.accident.model;
 
 import java.util.Objects;
 
-
 public class AccidentType {
 
     private int id;
