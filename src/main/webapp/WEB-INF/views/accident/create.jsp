@@ -51,6 +51,8 @@
                         <option value="<%=ac.getId()%>"><%=ac.getName()%></option>
                         <% } %>
                     </select>
+                    <br>
+                    <br>
                     <label>Article</label>
                     <select required name="rIds" multiple>
                         <% for (Rule r : (Collection<Rule>) request.getAttribute("rules")) { %>
