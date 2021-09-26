@@ -26,8 +26,12 @@ public class AccidentControl {
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("types", service.getTypes());
-        model.addAttribute("rules", service.getRules());
+        List<Rule> rules = new ArrayList<>();
+        service.getRules().forEach(rules::add);
+        List<AccidentType> types = new ArrayList<>();
+        service.getTypes().forEach(types::add);
+        model.addAttribute("types", types);
+        model.addAttribute("rules", rules);
         return "accident/create";
     }
 
@@ -40,11 +44,13 @@ public class AccidentControl {
 
     @GetMapping("/update")
     public String update(@RequestParam("id") int id, Model model) {
+        List<Rule> rules = new ArrayList<>();
+        service.getRules().forEach(rules::add);
+        List<AccidentType> types = new ArrayList<>();
+        service.getTypes().forEach(types::add);
         Accident accident = service.findAccidentById(id);
         List<Rule> rulesSelected = new ArrayList<>(accident.getRules());
-        List<Rule> rules = new ArrayList<>(service.getRules());
         rules.removeAll(rulesSelected);
-        List<AccidentType> types = new ArrayList<>(service.getTypes());
         types.remove(accident.getType());
         model.addAttribute("accident", service.findAccidentById(id));
         model.addAttribute("types", types);
