@@ -8,7 +8,6 @@ import ru.job4j.accident.model.Rule;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//@Repository
 public class AccidentMem {
 
     private Map<Integer, Accident> accidents = new HashMap<>();

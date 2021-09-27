@@ -11,7 +11,6 @@ import ru.job4j.accident.model.Rule;
 import java.util.Collection;
 import java.util.function.Function;
 
-@Repository
 public class AccidentHibernate {
 
     private final SessionFactory sf;
