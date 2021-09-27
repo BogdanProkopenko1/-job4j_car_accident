@@ -13,6 +13,8 @@
 </head>
 <body>
 <a href="<c:url value='/create'/>">Add accident</a>
+<a href="<c:url value='/reg'/>">Registration</a>
+<a href="<c:url value='/login'/>">Login</a>
 <div>
     Login as : ${user.username}
 </div>
