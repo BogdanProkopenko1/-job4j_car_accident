@@ -13,6 +13,9 @@
 </head>
 <body>
 <a href="<c:url value='/create'/>">Add accident</a>
+<div>
+    Login as : ${user.username}
+</div>
 <style>
     table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
     table.iksweb th{font-weight:normal;font-size:18px; color:#ffffff;background-color:#354251;}
