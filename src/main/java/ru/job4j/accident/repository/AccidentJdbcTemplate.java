@@ -20,12 +20,6 @@ public class AccidentJdbcTemplate {
         this.jdbc = jdbc;
     }
 
-    public Accident save(Accident accident) {
-        jdbc.update("insert into accident (name) values (?)",
-                accident.getName());
-        return accident;
-    }
-
     public Collection<Accident> getAccidents() {
         List<Accident> rsl = jdbc.query("select * from accident", (rsAc, rowAc) -> {
             Accident accident = new Accident(
